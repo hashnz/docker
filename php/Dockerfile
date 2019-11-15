@@ -4,8 +4,9 @@ RUN apk add --no-cache --update --virtual buildDeps $PHPIZE_DEPS \
     && apk add icu-dev \
     && docker-php-source extract \
     && pecl install xdebug \
+    && pecl install redis \
     && docker-php-ext-install pdo_mysql intl \
-    && docker-php-ext-enable opcache xdebug \
+    && docker-php-ext-enable opcache xdebug redis \
     && docker-php-source delete \
     && apk del buildDeps
 
