@@ -1,12 +1,13 @@
 FROM php:7.3-fpm-alpine
 
 RUN apk add --no-cache --update --virtual buildDeps $PHPIZE_DEPS \
-    && apk add icu-dev \
+    && apk add icu-dev openssl-dev \
     && docker-php-source extract \
     && pecl install xdebug \
     && pecl install redis \
+    && pecl install mongodb \
     && docker-php-ext-install pdo_mysql intl \
-    && docker-php-ext-enable opcache xdebug redis \
+    && docker-php-ext-enable opcache xdebug redis mongodb \
     && docker-php-source delete \
     && apk del buildDeps
 
