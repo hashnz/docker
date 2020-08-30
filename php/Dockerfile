@@ -18,6 +18,7 @@ RUN apk update \
     && pecl install mongodb \
     && pecl install decimal \
     && docker-php-ext-install pdo_mysql intl \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
     && docker-php-ext-install exif \
     && docker-php-ext-enable opcache xdebug redis mongodb decimal gd exif \
